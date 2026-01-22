@@ -22,3 +22,18 @@ export interface FinalStatement {
   statement: string;
   generatedAt: string;
 }
+
+// API Response type for resolutions
+export interface Resolution {
+  id: string;
+  council_id: string;
+  proposed_by: number;
+  type: 'resolve' | 'close';
+  status: 'pending' | 'passed' | 'failed';
+  created_at: string;
+  proposed_by_username?: string;
+  votes?: Array<{
+    username: string;
+    vote: 'support' | 'oppose';
+  }>;
+}
