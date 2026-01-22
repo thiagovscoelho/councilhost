@@ -149,11 +149,11 @@ TWITTER_CALLBACK_URL=http://localhost:3001/auth/twitter/callback
 
 ## Contributing
 
-This is a personal project, but suggestions and feedback are welcome!
+This is a personal project, but suggestions and feedback are welcome! It’s public domain CC0, so go ahead and fork it and build a better one
 
 ## License
 
-MIT License - see LICENSE file for details
+CC0 Public Domain – see LICENSE file for details
 
 ## Credits
 
