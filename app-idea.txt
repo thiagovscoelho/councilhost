@@ -1,0 +1,15 @@
+Council.host
+
+Convene • Propose • Opine • Amend • Resolve
+
+Council.host is a webapp idea I just had.
+
+Convene: The app is, initially, targeted to users of X (formerly Twitter). You write out a list of X usernames who are allowed in the council, and then you send these users the council link, and the ones who accept the invitation become council members. A council is convened on a specific council issue, which is provided by the convener. After sufficient discussion has been had to propose a series of conclusions and opine on them, the council may resolve and publish a joint statement.
+
+Propose: The main screen of the app is a “List of proposed conclusions” to which any user may add by making a “Proposal”, which adds a conclusion to the list of conclusions. A proposal is simply a text field.
+
+Opine: After a conclusion is in the list of conclusions, users may Opine on a conclusion. Clicking the Opine button on a conclusion gives you the Opine form, which is a radio button for Support/Oppose and a text field for Reasoning.
+
+Amend: In lieu of an Edit function, any user may propose an Amendment to any conclusion. This is effectively a different conclusion, but if it is at least equally as or more popular than the original (more Support vs Oppose) then it replaces it instead of being added alongside it.
+
+Resolve: Any user may propose a “Move To Resolve”, which, if it reaches unanimous support, a council is resolved. In a standard resolution, the council publishes a joint statement, signed under their X usernames. It follows a formula: “From [council start date/time] to [council end date/time], we, the X users [usernames] convened a council on the issue: [council issue]. We have resolved, unanimously, on the following conclusions: [unanimous conclusions]. A majority also resolved on the following conclusions: [majoritarian conclusions]. The minority adds their dissent: [reasoning from Oppose actions to the majoritarian conclusions, attributed to each user who opposed].” Alternatively, a user may propose a “Move To Close Without Resolving” which instead creates a statement: “From [council start date/time] to [council end date/time], the X users [usernames] convened a council on the issue: [council issue]. The council was closed without resolving upon any conclusions.”

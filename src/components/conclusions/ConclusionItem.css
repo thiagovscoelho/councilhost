@@ -1,0 +1,174 @@
+.conclusion-item {
+  margin-bottom: 1.5rem;
+}
+
+.conclusion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.conclusion-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.amendment-badge,
+.replaced-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.amendment-badge {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--color-warning);
+}
+
+.replaced-badge {
+  background-color: rgba(107, 114, 128, 0.2);
+  color: var(--color-neutral);
+}
+
+.conclusion-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.conclusion-author {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.conclusion-time {
+  color: var(--color-text-secondary);
+}
+
+.conclusion-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.conclusion-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--color-background);
+  border-radius: 6px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-icon {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.stat-support .stat-icon {
+  color: var(--color-success);
+}
+
+.stat-oppose .stat-icon {
+  color: var(--color-secondary);
+}
+
+.stat-count {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.conclusion-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.already-opined {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.opinions-list {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.opinions-list h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.opinion-item {
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid;
+}
+
+.opinion-support {
+  background-color: rgba(16, 185, 129, 0.05);
+  border-color: var(--color-success);
+}
+
+.opinion-oppose {
+  background-color: rgba(239, 68, 68, 0.05);
+  border-color: var(--color-secondary);
+}
+
+.opinion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.opinion-author {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.opinion-type-badge {
+  padding: 0.1875rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.opinion-type-support {
+  background-color: var(--color-success);
+  color: white;
+}
+
+.opinion-type-oppose {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.opinion-reasoning {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.opinion-time {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}

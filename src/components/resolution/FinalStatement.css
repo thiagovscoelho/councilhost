@@ -1,0 +1,162 @@
+.final-statement-wrapper {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.final-statement {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.final-statement::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.statement-watermark {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.watermark-logo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.watermark-tagline {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.statement-header {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.statement-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.statement-header h2 {
+  font-size: 2rem;
+  color: white;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.statement-type-badge {
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.statement-type-badge.standard {
+  background-color: rgba(16, 185, 129, 0.95);
+  color: white;
+}
+
+.statement-type-badge.close-without-resolving {
+  background-color: rgba(107, 114, 128, 0.95);
+  color: white;
+}
+
+.statement-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.statement-text {
+  font-size: 1.125rem;
+  line-height: 2;
+  white-space: pre-wrap;
+  color: #1a1a1a;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.statement-footer {
+  position: relative;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.statement-timestamp {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.statement-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statement-hint {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .final-statement {
+    padding: 2rem 1.5rem;
+  }
+
+  .watermark-logo {
+    font-size: 2rem;
+  }
+
+  .statement-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .statement-content {
+    padding: 1.5rem;
+  }
+
+  .statement-text {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}

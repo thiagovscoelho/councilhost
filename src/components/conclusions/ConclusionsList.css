@@ -1,0 +1,38 @@
+.conclusions-list {
+  width: 100%;
+}
+
+.conclusions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.conclusions-header h2 {
+  font-size: 1.75rem;
+}
+
+.conclusions-count {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.empty-conclusions {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.empty-conclusions p {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.conclusions-items {
+  margin-top: 2rem;
+}
