@@ -1,11 +1,12 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { query } from '../db/index.js';
-import { requireAuth, AuthRequest } from '../middleware/auth.js';
+import { requireAuth } from '../middleware/auth.js';
+import '../types/express.js';
 
 const router = Router();
 
 // Get resolutions for a council
-router.get('/council/:councilId', requireAuth, async (req: AuthRequest, res) => {
+router.get('/council/:councilId', requireAuth, async (req: Request, res: Response) => {
   try {
     const { councilId } = req.params;
     const userId = req.user!.id;
@@ -17,7 +18,8 @@ router.get('/council/:councilId', requireAuth, async (req: AuthRequest, res) => 
     );
 
     if (memberCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     const result = await query(
@@ -49,17 +51,19 @@ router.get('/council/:councilId', requireAuth, async (req: AuthRequest, res) => 
 });
 
 // Propose a resolution
-router.post('/', requireAuth, async (req: AuthRequest, res) => {
+router.post('/', requireAuth, async (req: Request, res: Response) => {
   try {
     const { councilId, type } = req.body;
     const userId = req.user!.id;
 
     if (!councilId || !type) {
-      return res.status(400).json({ error: 'Council ID and type are required' });
+      res.status(400).json({ error: 'Council ID and type are required' });
+      return;
     }
 
     if (type !== 'resolve' && type !== 'close') {
-      return res.status(400).json({ error: 'Type must be resolve or close' });
+      res.status(400).json({ error: 'Type must be resolve or close' });
+      return;
     }
 
     // Verify user is member
@@ -69,7 +73,8 @@ router.post('/', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (memberCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     const result = await query(
@@ -87,18 +92,20 @@ router.post('/', requireAuth, async (req: AuthRequest, res) => {
 });
 
 // Vote on a resolution
-router.post('/:id/vote', requireAuth, async (req: AuthRequest, res) => {
+router.post('/:id/vote', requireAuth, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { vote } = req.body;
     const userId = req.user!.id;
 
     if (!vote) {
-      return res.status(400).json({ error: 'Vote is required' });
+      res.status(400).json({ error: 'Vote is required' });
+      return;
     }
 
     if (vote !== 'support' && vote !== 'oppose') {
-      return res.status(400).json({ error: 'Vote must be support or oppose' });
+      res.status(400).json({ error: 'Vote must be support or oppose' });
+      return;
     }
 
     // Verify user is member of the council
@@ -110,7 +117,8 @@ router.post('/:id/vote', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (councilCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     // Upsert vote

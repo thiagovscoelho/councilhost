@@ -1,11 +1,12 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { query } from '../db/index.js';
-import { requireAuth, AuthRequest } from '../middleware/auth.js';
+import { requireAuth } from '../middleware/auth.js';
+import '../types/express.js';
 
 const router = Router();
 
 // Get all councils for current user
-router.get('/', requireAuth, async (req: AuthRequest, res) => {
+router.get('/', requireAuth, async (req: Request, res: Response) => {
   try {
     const userId = req.user!.id;
 
@@ -38,7 +39,7 @@ router.get('/', requireAuth, async (req: AuthRequest, res) => {
 });
 
 // Get a specific council
-router.get('/:id', requireAuth, async (req: AuthRequest, res) => {
+router.get('/:id', requireAuth, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -50,7 +51,8 @@ router.get('/:id', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (memberCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     const result = await query(
@@ -72,7 +74,8 @@ router.get('/:id', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Council not found' });
+      res.status(404).json({ error: 'Council not found' });
+      return;
     }
 
     res.json(result.rows[0]);
@@ -83,13 +86,14 @@ router.get('/:id', requireAuth, async (req: AuthRequest, res) => {
 });
 
 // Create a new council
-router.post('/', requireAuth, async (req: AuthRequest, res) => {
+router.post('/', requireAuth, async (req: Request, res: Response) => {
   try {
     const { issue, invitedUsernames } = req.body;
     const userId = req.user!.id;
 
     if (!issue || !invitedUsernames || !Array.isArray(invitedUsernames)) {
-      return res.status(400).json({ error: 'Invalid request body' });
+      res.status(400).json({ error: 'Invalid request body' });
+      return;
     }
 
     // Create council
@@ -134,7 +138,7 @@ router.post('/', requireAuth, async (req: AuthRequest, res) => {
 });
 
 // Accept invitation
-router.post('/:id/accept', requireAuth, async (req: AuthRequest, res) => {
+router.post('/:id/accept', requireAuth, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -148,7 +152,8 @@ router.post('/:id/accept', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Invitation not found' });
+      res.status(404).json({ error: 'Invitation not found' });
+      return;
     }
 
     res.json(result.rows[0]);
@@ -159,7 +164,7 @@ router.post('/:id/accept', requireAuth, async (req: AuthRequest, res) => {
 });
 
 // Decline invitation
-router.post('/:id/decline', requireAuth, async (req: AuthRequest, res) => {
+router.post('/:id/decline', requireAuth, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -173,7 +178,8 @@ router.post('/:id/decline', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Invitation not found' });
+      res.status(404).json({ error: 'Invitation not found' });
+      return;
     }
 
     res.json(result.rows[0]);

@@ -1,23 +1,15 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
+import '../types/express.js';
 
-export interface AuthRequest extends Request {
-  user?: {
-    id: number;
-    twitter_id: string;
-    username: string;
-    display_name: string;
-    profile_image_url?: string;
-  };
-}
-
-export function requireAuth(req: AuthRequest, res: Response, next: NextFunction) {
+export const requireAuth: RequestHandler = (req: Request, res: Response, next: NextFunction): void => {
   if (!req.isAuthenticated() || !req.user) {
-    return res.status(401).json({ error: 'Authentication required' });
+    res.status(401).json({ error: 'Authentication required' });
+    return;
   }
   next();
-}
+};
 
-export function optionalAuth(req: AuthRequest, res: Response, next: NextFunction) {
+export const optionalAuth: RequestHandler = (req: Request, res: Response, next: NextFunction): void => {
   // Passes through whether authenticated or not
   next();
-}
+};

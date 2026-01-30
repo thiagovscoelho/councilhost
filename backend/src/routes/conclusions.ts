@@ -1,11 +1,12 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { query } from '../db/index.js';
-import { requireAuth, AuthRequest } from '../middleware/auth.js';
+import { requireAuth } from '../middleware/auth.js';
+import '../types/express.js';
 
 const router = Router();
 
 // Get all conclusions for a council
-router.get('/council/:councilId', requireAuth, async (req: AuthRequest, res) => {
+router.get('/council/:councilId', requireAuth, async (req: Request, res: Response) => {
   try {
     const { councilId } = req.params;
     const userId = req.user!.id;
@@ -17,7 +18,8 @@ router.get('/council/:councilId', requireAuth, async (req: AuthRequest, res) => 
     );
 
     if (memberCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     const result = await query(
@@ -53,13 +55,14 @@ router.get('/council/:councilId', requireAuth, async (req: AuthRequest, res) => 
 });
 
 // Create a proposal
-router.post('/', requireAuth, async (req: AuthRequest, res) => {
+router.post('/', requireAuth, async (req: Request, res: Response) => {
   try {
     const { councilId, text, isAmendment, replacesId } = req.body;
     const userId = req.user!.id;
 
     if (!councilId || !text) {
-      return res.status(400).json({ error: 'Council ID and text are required' });
+      res.status(400).json({ error: 'Council ID and text are required' });
+      return;
     }
 
     // Verify user is member
@@ -69,7 +72,8 @@ router.post('/', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (memberCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     const result = await query(
@@ -87,18 +91,20 @@ router.post('/', requireAuth, async (req: AuthRequest, res) => {
 });
 
 // Create or update an opinion
-router.post('/:id/opinion', requireAuth, async (req: AuthRequest, res) => {
+router.post('/:id/opinion', requireAuth, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { stance, reasoning } = req.body;
     const userId = req.user!.id;
 
     if (!stance || !reasoning) {
-      return res.status(400).json({ error: 'Stance and reasoning are required' });
+      res.status(400).json({ error: 'Stance and reasoning are required' });
+      return;
     }
 
     if (stance !== 'support' && stance !== 'oppose') {
-      return res.status(400).json({ error: 'Stance must be support or oppose' });
+      res.status(400).json({ error: 'Stance must be support or oppose' });
+      return;
     }
 
     // Verify user is member of the council
@@ -110,7 +116,8 @@ router.post('/:id/opinion', requireAuth, async (req: AuthRequest, res) => {
     );
 
     if (councilCheck.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a member of this council' });
+      res.status(403).json({ error: 'Not a member of this council' });
+      return;
     }
 
     // Upsert opinion
