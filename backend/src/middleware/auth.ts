@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
-import '../types/express.js';
 
 export const requireAuth: RequestHandler = (req: Request, res: Response, next: NextFunction): void => {
   if (!req.isAuthenticated() || !req.user) {

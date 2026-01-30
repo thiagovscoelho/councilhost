@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { query } from '../db/index.js';
 import { requireAuth } from '../middleware/auth.js';
-import '../types/express.js';
 
 const router = Router();
 
